@@ -8,14 +8,18 @@ import {
   HttpPostClientParams,
 } from '@/data/protocols/http/http-post-client'
 
-export class HttpPostClientSpy implements HttpPostClient {
+export class HttpPostClientSpy<ReqBodyType, ResponseBodyType>
+  implements HttpPostClient<ReqBodyType, ResponseBodyType>
+{
   url?: string
-  body?: object
-  response: HttpResponse = {
+  body?: ReqBodyType
+  response: HttpResponse<ResponseBodyType> = {
     statusCode: HttpStatusCode.ok,
   }
 
-  async post(params: HttpPostClientParams): Promise<HttpResponse> {
+  async post(
+    params: HttpPostClientParams<ReqBodyType>
+  ): Promise<HttpResponse<ResponseBodyType>> {
     this.url = params.url
     this.body = params.body
 
