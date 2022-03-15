@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import Styles from './spinner-styles.scss'
+type StyledProps = {
+  className?: string
+}
+type Props = React.AllHTMLAttributes<HTMLElement>
 
-type Props = React.HTMLAttributes<HTMLDivElement>
-
-const Spinner: React.FC = (props: Props) => {
+const Spinner: React.FC<StyledProps> = (props: Props) => {
   return (
     <div {...props} className={[Styles.spinner, props.className].join(' ')}>
       <div />
